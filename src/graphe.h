@@ -12,7 +12,7 @@ typedef struct cellule {
 } cellule;
 
 typedef struct {
-  cellule *head
+  cellule *head;
 } liste;
 
 typedef struct {

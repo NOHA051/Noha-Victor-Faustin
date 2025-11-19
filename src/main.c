@@ -1,5 +1,7 @@
-#include "graphe.h"
+#include <stdio.h>
 
+#include "graphe.h"
+#include "graphe.c"
 
 int main(int argc, char *argv[]) {
     const char *filename;
