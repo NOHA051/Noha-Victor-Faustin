@@ -52,7 +52,7 @@ void afficherListeAdjacence(liste_adjacence g) {
 
 /* ---------- Lecture du fichier (readGraph) ---------- */
 
-liste_adjacence readGraph(const char *filename) {
+liste_adjacence readGraphe(const char *filename) {
     FILE *file = fopen(filename, "rt");
     if (file == NULL) { perror(filename); exit(EXIT_FAILURE); }
 

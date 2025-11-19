@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "graphe.h"
-#include "graphe.c"
 
 int main(int argc, char *argv[]) {
     const char *filename;
@@ -9,7 +8,7 @@ int main(int argc, char *argv[]) {
     else filename = "../data/exemple1.txt"; // chemin par défaut si aucun argument
 
     printf("Lecture du fichier : %s\n", filename);
-    liste_adjacence g = readGraph(filename);
+    liste_adjacence g = readGraphe(filename);
     printf("Graphe chargé. Nombre de sommets = %d\n\n", g.taille);
 
     // Étape 1 :  affichage du graphe
@@ -26,7 +25,6 @@ int main(int argc, char *argv[]) {
 
     // Étape 3 : export vers Mermaid
     printf("\n--- Exportation du graphe au format Mermaid ---\n");
-    exportToMermaid(g, "exemple_valid_step3.txt");
 
     // Libération de la mémoire
     freeListeAdjacence(&g);
