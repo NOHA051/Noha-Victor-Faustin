@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
     const char *filename;
     if (argc >= 2) filename = argv[1];
-    else filename = "../data/exemple1.txt"; // chemin par défaut si aucun argument
+    else filename = "data/exemple.txt"; // chemin par défaut si aucun argument
 
     printf("Lecture du fichier : %s\n", filename);
     liste_adjacence g = readGraphe(filename);
