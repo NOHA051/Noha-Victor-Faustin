@@ -10,7 +10,7 @@
 double** create_zero_matrix(int n) {
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) {
-        matrix[i] = (double*)calloc(n, sizeof(double)); // remplit de 0
+        matrix[i] = (double*)calloc(n, sizeof(double)); 
     }
     return matrix;
 }
@@ -50,7 +50,7 @@ double** adjacency_to_transition_matrix(int n, int** adjacency_list, int* degree
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < degrees[i]; j++) {
             int dest = adjacency_list[i][j];
-            matrix[i][dest] = 1.0 / degrees[i]; // probabilité de transition uniforme
+            matrix[i][dest] = 1.0 / degrees[i]; 
         }
     }
     return matrix;
@@ -66,7 +66,7 @@ t_matrix subMatrix(t_matrix matrix, t_partition part, int compo_index) {
     sub.data = create_zero_matrix(size);
 
     for (int i = 0; i < size; i++) {
-        int row = C.sommets[i] - 1; // ajustement indice 0-based
+        int row = C.sommets[i] - 1; 
         for (int j = 0; j < size; j++) {
             int col = C.sommets[j] - 1;
             sub.data[i][j] = matrix.data[row][col];
