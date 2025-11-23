@@ -6,7 +6,6 @@
 #include "hasse.h"
 #include "matrix.h"
 
-// Fonctions pour identifier les classes
 int classe_transitoire(t_link_array links, int classe_id) {
     for (int i = 0; i < links.count; i++) {
         if (links.links[i].from == classe_id)
@@ -34,9 +33,7 @@ int main(int argc, char *argv[]) {
                            ? argv[1]
                            : "data/exemple.txt";
 
-    // ==========================
-    // Partie Graphe / Tarjan / Hasse
-    // ==========================
+ 
     printf("\nLecture du fichier : %s\n", filename);
     liste_adjacence g = readGraphe(filename);
 
@@ -86,9 +83,7 @@ int main(int argc, char *argv[]) {
             printf(" -> Classe ABSORBANTE (état unique)\n");
     }
 
-    // ==========================
-    // Partie Matrices : lecture M, M^3, M^7, convergence
-    // ==========================
+   
     const char *meteo_file = "data/exemple_meteo.txt";
     FILE *f = fopen(meteo_file, "r");
     if (!f) {
@@ -130,9 +125,7 @@ int main(int argc, char *argv[]) {
         printf("\n");
     }
 
-    // ==========================
-    // Dernier affichage : distributions stationnaires pour les deux fichiers
-    // ==========================
+   
     const char *meteo_files[] = {"data/exemple.txt", "data/exemple_meteo.txt"};
     int num_files = 2;
 
@@ -213,9 +206,7 @@ int main(int argc, char *argv[]) {
         free(M_file);
     }
 
-    // ==========================
-    // Libération mémoire
-    // ==========================
+   
     for (int i = 0; i < n; i++) free(M[i]);
     free(M);
 
