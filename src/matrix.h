@@ -9,8 +9,8 @@
 #include <math.h>
 
 typedef struct {
-    int n;          // taille de la matrice (n x n)
-    double **data;  // tableau 2D
+    int n;          
+    double **data;  
 } t_matrix;
 
 double** create_zero_matrix(int n);
