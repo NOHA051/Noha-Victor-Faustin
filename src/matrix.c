@@ -1,8 +1,8 @@
 #include "matrix.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
-// Création d'une matrice n x n remplie de 0
 double** create_zero_matrix(int n) {
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) {
@@ -11,7 +11,6 @@ double** create_zero_matrix(int n) {
     return matrix;
 }
 
-// Recopie d'une matrice
 void copy_matrix(int n, double** source, double** dest) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -20,7 +19,6 @@ void copy_matrix(int n, double** source, double** dest) {
     }
 }
 
-// Multiplication de matrices
 double** multiply_matrices(int n, double** A, double** B) {
     double** result = create_zero_matrix(n);
     for (int i = 0; i < n; i++) {
@@ -33,7 +31,6 @@ double** multiply_matrices(int n, double** A, double** B) {
     return result;
 }
 
-// Différence entre deux matrices (somme des valeurs absolues des différences)
 double diff_matrices(int n, double** A, double** B) {
     double diff = 0.0;
     for (int i = 0; i < n; i++) {
@@ -44,7 +41,6 @@ double diff_matrices(int n, double** A, double** B) {
     return diff;
 }
 
-// Création d'une matrice de transition à partir d'une liste d'adjacence
 double** adjacency_to_transition_matrix(int n, int** adjacency_list, int* degrees) {
     double** matrix = create_zero_matrix(n);
     for (int i = 0; i < n; i++) {
@@ -54,4 +50,24 @@ double** adjacency_to_transition_matrix(int n, int** adjacency_list, int* degree
         }
     }
     return matrix;
+}
+
+
+t_matrix subMatrix(t_matrix matrix, t_partition part, int compo_index) {
+    t_classe C = part.classes[compo_index];
+    int size = C.nb;
+
+    t_matrix sub;
+    sub.n = size;
+    sub.data = create_zero_matrix(size);
+
+    for (int i = 0; i < size; i++) {
+        int row = C.sommets[i] - 1; // ajustement indice 0-based
+        for (int j = 0; j < size; j++) {
+            int col = C.sommets[j] - 1;
+            sub.data[i][j] = matrix.data[row][col];
+        }
+    }
+
+    return sub;
 }
