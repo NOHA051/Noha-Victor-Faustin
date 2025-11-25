@@ -36,7 +36,7 @@ int estGrapheDeMarkov(liste_adjacence g);
 
 
 char *getId(int nul);
-void exportToMermaid(liste_adjacence g, const char *filename);
+void writeMermaid(liste_adjacence g, const char *filename);
 
 
 #endif //GRAPHE_H

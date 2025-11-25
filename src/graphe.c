@@ -121,3 +121,66 @@ int estGrapheDeMarkov(liste_adjacence g) {
     return estValide;
 }
 
+
+
+char *getId(int num) {
+    static char buffer[10];
+    int i = 0;
+    num--;
+
+    while (num >= 0) {
+        buffer[i++] = 'A' + (num % 26);
+        num = num / 26 - 1;
+    }
+    buffer[i] = '\0';
+
+    // reverse
+    for (int j = 0; j < i/2; j++) {
+        char tmp = buffer[j];
+        buffer[j] = buffer[i-j-1];
+        buffer[i-j-1] = tmp;
+    }
+
+    return buffer;
+}
+
+
+void writeMermaid(liste_adjacence g2, const char *filename) {
+    FILE *f = fopen(filename, "wt");
+    if (!f) {
+        perror("Erreur ouverture fichier Mermaid");
+        exit(EXIT_FAILURE);
+    }
+
+    // --- CONFIGURATION MERMAID ---
+    fprintf(f,
+        "---\n"
+        "config:\n"
+        "   layout: elk\n"
+        "   theme: neo\n"
+        "   look: neo\n"
+        "---\n\n"
+        "flowchart LR\n"
+    );
+
+    // --- DÉCLARATION DES SOMMETS ---
+    for (int i = 0; i < g2.taille; i++) {
+        char *id = getId(i + 1);
+        fprintf(f, "%s((%d))\n", id, i + 1);
+    }
+    fprintf(f, "\n");
+
+    // --- ARÊTES ---
+    for (int i = 0; i < g2.taille; i++) {
+        cellule *cur = g2.tab[i].head;
+        char *idDepart = getId(i + 1);
+
+        while (cur != NULL) {
+            char *idArrivee = getId(cur->arrivee);
+            fprintf(f, "%s -->|%.2f| %s\n", idDepart, cur->proba, idArrivee);
+            cur = cur->suiv;
+        }
+    }
+
+    fclose(f);
+}

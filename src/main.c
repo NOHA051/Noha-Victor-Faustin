@@ -297,6 +297,16 @@ int main(int argc, char *argv[]) {
         free(M_file);
     }
 
+// **** Création du fichier Mermaid pour l'étape 3 de la partie 1 ****//
+
+    liste_adjacence g2 = readGraphe("/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/data/exempleM.txt");
+
+    writeMermaid(g2, "/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/src/grapheMermaid.mmd");   // ← Nom choisi par toi !
+
+    printf("Fichier Mermaid généré.\n");
+
+
+
     for (int i = 0; i < n; i++) free(M[i]);
     free(M);
 
