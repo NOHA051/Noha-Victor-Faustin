@@ -116,6 +116,12 @@ int estGrapheDeMarkov(liste_adjacence g) {
         } else {
             printf("Sommet %d : somme des probabilites = %.3f \n", i + 1, somme);
         }
+
+    }
+    if (estValide == 0) {
+        printf("\nCe n'est pas un graphe de Markov\n");
+    } else {
+        printf("\nC'est bien un graphe de Markov\n");
     }
 
     return estValide;
@@ -145,7 +151,7 @@ char *getId(int num) {
 }
 
 
-void writeMermaid(liste_adjacence g2, const char *filename) {
+void writeMermaid(liste_adjacence g, const char *filename) {
     FILE *f = fopen(filename, "wt");
     if (!f) {
         perror("Erreur ouverture fichier Mermaid");
@@ -164,15 +170,15 @@ void writeMermaid(liste_adjacence g2, const char *filename) {
     );
 
     // --- DÉCLARATION DES SOMMETS ---
-    for (int i = 0; i < g2.taille; i++) {
+    for (int i = 0; i < g.taille; i++) {
         char *id = getId(i + 1);
         fprintf(f, "%s((%d))\n", id, i + 1);
     }
     fprintf(f, "\n");
 
     // --- ARÊTES ---
-    for (int i = 0; i < g2.taille; i++) {
-        cellule *cur = g2.tab[i].head;
+    for (int i = 0; i < g.taille; i++) {
+        cellule *cur = g.tab[i].head;
         char *idDepart = getId(i + 1);
 
         while (cur != NULL) {

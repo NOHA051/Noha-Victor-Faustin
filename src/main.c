@@ -39,6 +39,9 @@ int main(int argc, char *argv[]) {
     printf("=== LISTE D'ADJACENCE ===\n");
     afficherListeAdjacence(g);
 
+    printf("\nEst-ce bien un graphe de Markov ?\n\n");
+    estGrapheDeMarkov(g);
+
     printf("\n=== TARJAN : PARTITION EN CLASSES ===\n");
     t_partition P = tarjan(g);
 
@@ -299,9 +302,9 @@ int main(int argc, char *argv[]) {
 
 // **** Création du fichier Mermaid pour l'étape 3 de la partie 1 ****//
 
-    liste_adjacence g2 = readGraphe("/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/data/exempleM.txt");
+    g = readGraphe("/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/data/exempleM.txt");
 
-    writeMermaid(g2, "/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/src/grapheMermaid.mmd");   // ← Nom choisi par toi !
+    writeMermaid(g, "/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/src/grapheMermaid.mmd");   // ← Nom choisi par toi !
 
     printf("Fichier Mermaid généré.\n");
 
