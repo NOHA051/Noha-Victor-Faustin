@@ -29,7 +29,7 @@ int graphe_irreductible(t_partition P) {
 
 int main(int argc, char *argv[]) {
 
-    const char *filename = (argc >= 2) ? argv[1] : "data/exemple.txt";
+    const char *filename = (argc >= 2) ? argv[1] : "data/exemple3.txt";
 
     printf("\nLecture du fichier : %s\n", filename);
     liste_adjacence g = readGraphe(filename);
@@ -38,9 +38,6 @@ int main(int argc, char *argv[]) {
 
     printf("=== LISTE D'ADJACENCE ===\n");
     afficherListeAdjacence(g);
-
-    printf("\nEst-ce bien un graphe de Markov ?\n\n");
-    estGrapheDeMarkov(g);
 
     printf("\n=== TARJAN : PARTITION EN CLASSES ===\n");
     t_partition P = tarjan(g);
@@ -80,7 +77,7 @@ int main(int argc, char *argv[]) {
             printf("%s : classe PERSISTANTE\n", P.classes[c].name);
 
         if (classe_absorbante(P, L, c))
-            printf(" -> Classe ABSORBANTE (état unique)\n");
+            printf(" -> Classe ABSORBANTE (etat unique)\n");
     }
 
     const char *meteo_file = "data/exemple_meteo.txt";
@@ -302,9 +299,9 @@ int main(int argc, char *argv[]) {
 
 // **** Création du fichier Mermaid pour l'étape 3 de la partie 1 ****//
 
-    g = readGraphe("/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/data/exempleM.txt");
+    liste_adjacence g2 = readGraphe("data/exempleM.txt");
 
-    writeMermaid(g, "/Users/bourrichnoha/CLionProjects/Noha-Victor-Faustin/src/grapheMermaid.mmd");   // ← Nom choisi par toi !
+    writeMermaid(g2, "src");   // ← Nom choisi par toi !
 
     printf("Fichier Mermaid généré.\n");
 
